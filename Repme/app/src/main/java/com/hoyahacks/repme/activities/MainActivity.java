@@ -1,9 +1,13 @@
-package com.hoyahacks.repme;
+package com.hoyahacks.repme.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.hoyahacks.repme.R;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 import retrofit2.Retrofit;
 
@@ -15,11 +19,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://162.243.58.136")
-                .build();
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this);
 
-        
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
     }
 
 

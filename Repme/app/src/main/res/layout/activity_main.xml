@@ -5,23 +5,39 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/repme_logo"/>
 
     <TextView
         android:id="@+id/areYouA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="24sp"
+        android:text="Are you a...."
+        android:textColor="@color/main"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/democrat"
+            android:text="Democrat"
+            android:textColor="#ffffffff"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Democrat"/>
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#ffffffff"
+            android:shadowDx="0dp"
+            android:shadowDy="0dp"
+            android:shadowRadius="5dp"
+            />
 
         <Button
             android:id="@+id/independent"
@@ -31,9 +47,17 @@
 
         <Button
             android:id="@+id/republican"
+            android:text="Republican"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Republican"/>
+            android:background="@drawable/buttonshape2"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0dp"
+            android:shadowDy="0dp"
+            android:shadowRadius="5dp"
+            />
 
 
     </LinearLayout>
