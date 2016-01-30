@@ -1,0 +1,54 @@
+[
+  {
+    "question": "Should federal prisons ban the use of solitary confinement for juveniles?",
+    "type": "Criminal"
+  },
+  {
+    "question": "Should abortion be legal?",
+    "type": "Social"
+  },
+  {
+    "question": "Do you support the legalization of same sex marriage?",
+    "type": "Social"
+  },
+  {
+    "question": "Should the federal government allow the death penalty?",
+    "type": "Social"
+  },
+  {
+    "question": "Should terminally ill patients be allowed to end their lives via assisted suicide?",
+    "type": "Social"
+  },
+  {
+    "question": "Should the government increase environmental regulations to prevent global warming?",
+    "type": "Environmental"
+  },
+  {
+    "question": "Should employers be required to pay men and women, who perform the same work, the same salary?",
+    "type": "Economic"
+  },
+  {
+    "question": "Should every person purchasing a gun be required to pass a criminal and public safety background check?",
+    "type": "Domestic policy"
+  },
+  {
+    "question": "Do you support the Patient Protection and Affordable Care Act (Obamacare)?",
+    "type": "Healthcare"
+  },
+  {
+    "question": "Should the government decrease military spending?",
+    "type": "Foreign policy"
+  },
+  {
+    "question": "Would you support increasing taxes on the rich in order to reduce interest rates for student loans?",
+    "type": "Education"
+  },
+  {
+    "question": "Should illegal immigrants be given access to government-subsidized healthcare?",
+    "type": "Immigration"
+  },
+  {
+    "question": "Should the government fund space travel?",
+    "type": "Science"
+  }
+]
