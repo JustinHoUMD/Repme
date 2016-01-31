@@ -66,4 +66,4 @@ def score_bills(url, keyword, legislature):
 for i in range(0, len(keywords)):
     score_bills(url, keywords[i], legislature)
 
-print legislator_scores
+print json.dumps(legislator_scores)
