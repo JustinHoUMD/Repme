@@ -31,7 +31,6 @@ def score_bills(url, keyword, legislature):
                     elif s["party"] == "Republican":
                         bill_score += 1
                 bill_score = bill_score/len(sponsors)
-            print "\tBill score: " + str(bill_score)
         bill_scores[bill_id] = bill_score
 
         #Update the liberal/conservative score of every legislator based on how they  voted on this bill
