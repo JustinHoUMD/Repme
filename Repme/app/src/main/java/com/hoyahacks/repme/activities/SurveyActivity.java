@@ -57,8 +57,8 @@ public class SurveyActivity extends ActionBarActivity implements View.OnClickLis
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 for(ParseObject o: objects) {
-                    issues.add(o.getString("type"));
-                    Question q = new Question(o.getString("question"), o.getString("type"), o.getString("party"));
+                    issues.add(o.getString("type").toLowerCase().replace(" ", "+"));
+                    Question q = new Question(o.getString("question"), o.getString("type").toLowerCase().replace(" ","+"), o.getString("party"));
                     Log.d(TAG, "question: "+q.question);
                     questions.add(q);
                 }

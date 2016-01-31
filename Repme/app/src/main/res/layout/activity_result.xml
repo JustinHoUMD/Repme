@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical"
-        android:background="@color/MintCream">
+        android:background="@color/BlanchedAlmond">
 
     <TextView
         android:id="@+id/overall_score"
@@ -36,71 +36,9 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <ListView
+        android:id="@+id/candidate_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/candidate"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/politician"/>
-
-    <TextView
-        android:id="@+id/candidate_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/candidate"
-        android:text="Candidate Name"
-        android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Score: XX"
-            android:textSize="20sp"
-            android:textColor="@color/Black"
-            android:layout_below="@id/candidate_name"
-            android:layout_toRightOf="@id/candidate"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/candidate2"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/politician"/>
-
-        <TextView
-            android:id="@+id/candidate_name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/candidate2"
-            android:text="Candidate Name"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/candidate_score2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Score: XX"
-            android:textSize="20sp"
-            android:textColor="@color/Black"
-            android:layout_below="@id/candidate_name2"
-            android:layout_toRightOf="@id/candidate2"/>
-
-    </RelativeLayout>
-
-
+        android:layout_height="wrap_content"></ListView>
 
 </LinearLayout>

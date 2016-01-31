@@ -15,7 +15,6 @@ import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import retrofit2.Retrofit;
 import utilities.RPrefs;
 
 
@@ -27,9 +26,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this);
 
         mRepublicanButton = (Button) findViewById(R.id.republican);
         mIndependentButton = (Button) findViewById(R.id.independent);
