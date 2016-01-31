@@ -86,5 +86,9 @@ for leg_id in legislator_scores:
     for keyword in legislator_scores[leg_id]:
         legislator_scores[leg_id][keyword] *= 20.0 / bill_counts[leg_id][keyword]
 
+for leg_id in legislator_scores:
+    for keyword in legislator_scores[leg_id]:
+        legislator_scores[leg_id][keyword] = str(legislator_scores[leg_id][keyword])
+
 results = {"results":[legislator_scores]}
 print json.dumps(results)
