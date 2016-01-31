@@ -17,9 +17,8 @@
         android:id="@+id/ranking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
         android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
         android:textColor="@color/Black"
-        android:textSize="16sp"
-        android:text="1"/>
+        android:textSize="16sp" />
 </LinearLayout>

@@ -1,9 +1,11 @@
 package models;
 
+import java.io.Serializable;
+
 /**
  * Created by me on 1/31/16.
  */
-public class Legislator {
+public class Legislator implements Serializable {
     public String id;
     public String state;
     public String full_name;

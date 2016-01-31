@@ -2,12 +2,14 @@ package com.hoyahacks.repme.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,11 +20,14 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import models.Category;
 import models.Difference;
 import models.Legislator;
 import models.Question;
@@ -43,7 +48,7 @@ public class ResultActivity extends ActionBarActivity {
     public static final String TAG = "ResultActivity";
     private static final String API_KEY = "GQW6JFUW1LNE8B54T96WNFT34S5HCYP2";
     private TextView mOverallScore;
-    private HashMap<String, Integer> difference;
+    private HashMap<String, Double> difference;
     private ArrayList<Difference> differences;
     private ListView mPoliticianList;
     private ArrayList<Legislator> legislators;
@@ -61,10 +66,18 @@ public class ResultActivity extends ActionBarActivity {
 
 
         legislators = new ArrayList<Legislator>();
-        difference = new HashMap<String, Integer>();
+        difference = new HashMap<String, Double>();
         differences = new ArrayList<Difference>();
 
         mPoliticianList = (ListView) findViewById(R.id.candidate_list);
+        mPoliticianList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(activity, CandidateActivity.class);
+                intent.putExtra("legislator", legislators.get(position));
+                startActivity(intent);
+            }
+        });
         mOverallScore = (TextView) findViewById(R.id.score_num);
         mOverallScore.setText(RPrefs.getScore() + "");
         //Grab questions from parse and store in ArrayList
@@ -77,11 +90,16 @@ public class ResultActivity extends ActionBarActivity {
                     // For each politician
                     for (String key : o.keySet()) {
                         // Convert each politician's scores into a HashMap
-                        HashMap<String, Integer> cand = (HashMap<String, Integer>) o.get(key);
+                        HashMap<String, String> cand = (HashMap<String, String>) o.get(key);
                         Log.d(TAG, cand.get("criminal") + "");
                         // For each category in the HashMap
                         for (String category : cand.keySet()) {
-                            int diff = Math.abs(RPrefs.getInt(category) - cand.get(category).intValue());
+                            if (category.equals("overall_score")) {
+                                continue;
+                            }
+                            double diff = Math.abs(((double)RPrefs.getInt(category)) -
+                                    Double.valueOf(cand.get(category)));
+                            Category c = new Category(category,diff);
                             Log.d(TAG, "difference: " + diff);
                             if (difference.containsKey(key)) {
                                 difference.put(key, difference.get(key) + diff);
@@ -153,6 +171,10 @@ public class ResultActivity extends ActionBarActivity {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.politician_list_element, parent, false);
+            TextView name = (TextView) rowView.findViewById(R.id.politician_name);
+            TextView ranking = (TextView) rowView.findViewById(R.id.ranking);
+            name.setText(leg.full_name);
+            ranking.setText("Rank: " + (position + 1));
             return rowView;
         }
     }

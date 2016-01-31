@@ -5,15 +5,20 @@ package models;
  */
 public class Difference implements Comparable{
     public String politician;
-    public int difference;
+    public double difference;
 
-    public Difference(String politician, int difference) {
+    public Difference(String politician, double difference) {
         this.politician = politician;
         this.difference = difference;
     }
 
     @Override
     public int compareTo(Object another) {
-        return this.difference - ((Difference)another).difference;
+        if (this.difference > ((Difference)another).difference) {
+            return 1;
+        } else if (this.difference < ((Difference)another).difference) {
+            return -1;
+        }
+        return 0;
     }
 }
