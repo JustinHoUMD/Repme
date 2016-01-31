@@ -84,7 +84,10 @@ for j in range(0, 50):
 
 for leg_id in legislator_scores:
     for keyword in legislator_scores[leg_id]:
-        legislator_scores[leg_id][keyword] *= 20.0 / bill_counts[leg_id][keyword]
+        if keyword == "overall_score":
+            legislator_scores[leg_id][keyword] *= 20.0 / bill_counts[leg_id][keyword]
+        else: 
+            legislator_scores[leg_id][keyword] *= 2.0 / bill_counts[leg_id][keyword]
 
 for leg_id in legislator_scores:
     for keyword in legislator_scores[leg_id]:
