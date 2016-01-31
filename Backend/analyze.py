@@ -93,5 +93,7 @@ for leg_id in legislator_scores:
     for keyword in legislator_scores[leg_id]:
         legislator_scores[leg_id][keyword] = str(legislator_scores[leg_id][keyword])
 
+legislator_scores['MDL000051'] = None
+
 results = {"results":[legislator_scores]}
 print json.dumps(results)
