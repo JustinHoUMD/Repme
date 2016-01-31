@@ -84,9 +84,7 @@ for j in range(0, 1):
 
 for leg_id in legislator_scores:
     for keyword in legislator_scores[leg_id]:
-        if bill_counts[leg_id][keyword] == 0:
-            print keyword
-        legislator_scores[leg_id][keyword] = 20.0 / bill_counts[leg_id][keyword]
+        legislator_scores[leg_id][keyword] *= 20.0 / bill_counts[leg_id][keyword]
 
 results = {"results":[legislator_scores]}
 print json.dumps(results)
