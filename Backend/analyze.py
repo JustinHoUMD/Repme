@@ -12,9 +12,6 @@ legislator_scores = {}
 def score_bills(url, keyword, legislature):
     r = requests.get(url + keyword + legislature + KEY)
     j = json.loads(r.text)
-        
-    max_score = -100
-    min_score = 100
 
     for i in range(0, len(j)):
         bill_id = str(j[i]["id"])
@@ -66,4 +63,5 @@ def score_bills(url, keyword, legislature):
 for i in range(0, len(keywords)):
     score_bills(url, keywords[i], legislature)
 
-print json.dumps(legislator_scores)
+results = {"results":[legislator_scores]}
+print json.dumps(results)
