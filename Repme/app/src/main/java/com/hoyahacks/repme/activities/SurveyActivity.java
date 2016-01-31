@@ -59,9 +59,10 @@ public class SurveyActivity extends ActionBarActivity implements View.OnClickLis
                 for(ParseObject o: objects) {
                     issues.add(o.getString("type").toLowerCase().replace(" ", "+"));
                     Question q = new Question(o.getString("question"), o.getString("type").toLowerCase().replace(" ","+"), o.getString("party"));
-                    Log.d(TAG, "question: "+q.question);
+                    Log.d(TAG, "question: " + q.question);
                     questions.add(q);
                 }
+                question.setText(questions.get(0).question);
                 // Reset counts
                 for (String issue: issues) {
                     RPrefs.putInt(issue, 0);

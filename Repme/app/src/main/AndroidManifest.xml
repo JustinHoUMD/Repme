@@ -35,7 +35,7 @@
             android:label="@string/title_activity_result"></activity>
         <activity
             android:name=".activities.CandidateActivity"
-            android:label="@string/title_activity_result"></activity>
+            android:label="Candidate"></activity>
     </application>
 
 </manifest>

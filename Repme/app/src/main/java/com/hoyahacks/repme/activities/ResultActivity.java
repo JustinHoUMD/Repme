@@ -49,6 +49,7 @@ public class ResultActivity extends ActionBarActivity {
     private static final String API_KEY = "GQW6JFUW1LNE8B54T96WNFT34S5HCYP2";
     private TextView mOverallScore;
     private HashMap<String, Double> difference;
+    private HashMap<String, ArrayList<Category>> categoryMap;
     private ArrayList<Difference> differences;
     private ListView mPoliticianList;
     private ArrayList<Legislator> legislators;
@@ -68,6 +69,8 @@ public class ResultActivity extends ActionBarActivity {
         legislators = new ArrayList<Legislator>();
         difference = new HashMap<String, Double>();
         differences = new ArrayList<Difference>();
+        categoryMap = new HashMap<String, ArrayList<Category>>();
+
 
         mPoliticianList = (ListView) findViewById(R.id.candidate_list);
         mPoliticianList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -75,6 +78,7 @@ public class ResultActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(activity, CandidateActivity.class);
                 intent.putExtra("legislator", legislators.get(position));
+                intent.putExtra("categories", categoryMap.get(legislators.get(position).id));
                 startActivity(intent);
             }
         });
@@ -93,6 +97,7 @@ public class ResultActivity extends ActionBarActivity {
                         HashMap<String, String> cand = (HashMap<String, String>) o.get(key);
                         Log.d(TAG, cand.get("criminal") + "");
                         // For each category in the HashMap
+                        ArrayList<Category> categoryArray = new ArrayList<Category>();
                         for (String category : cand.keySet()) {
                             if (category.equals("overall_score")) {
                                 continue;
@@ -100,6 +105,7 @@ public class ResultActivity extends ActionBarActivity {
                             double diff = Math.abs(((double)RPrefs.getInt(category)) -
                                     Double.valueOf(cand.get(category)));
                             Category c = new Category(category,diff);
+                            categoryArray.add(c);
                             Log.d(TAG, "difference: " + diff);
                             if (difference.containsKey(key)) {
                                 difference.put(key, difference.get(key) + diff);
@@ -107,6 +113,7 @@ public class ResultActivity extends ActionBarActivity {
                                 difference.put(key, diff);
                             }
                         }
+                        categoryMap.put(key, categoryArray);
 
                     }
                 }
