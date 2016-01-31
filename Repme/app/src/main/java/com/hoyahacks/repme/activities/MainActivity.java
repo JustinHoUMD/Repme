@@ -1,18 +1,27 @@
 package com.hoyahacks.repme.activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.hoyahacks.repme.R;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import retrofit2.Retrofit;
+import utilities.RPrefs;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+
+    private Button mRepublicanButton, mIndependentButton, mDemocratButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +31,13 @@ public class MainActivity extends ActionBarActivity {
         Parse.enableLocalDatastore(this);
         Parse.initialize(this);
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
+        mRepublicanButton = (Button) findViewById(R.id.republican);
+        mIndependentButton = (Button) findViewById(R.id.independent);
+        mDemocratButton = (Button) findViewById(R.id.democrat);
+
+        mRepublicanButton.setOnClickListener(this);
+        mIndependentButton.setOnClickListener(this);
+        mDemocratButton.setOnClickListener(this);
     }
 
 
@@ -48,5 +61,18 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.democrat:
+            case R.id.independent:
+            case R.id.republican:
+                //Democrat
+                Intent intent = new Intent(this, SurveyActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

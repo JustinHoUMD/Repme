@@ -34,9 +34,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
             android:shadowColor="#ffffffff"
-            android:shadowDx="0dp"
-            android:shadowDy="0dp"
-            android:shadowRadius="5dp"
             />
 
         <Button
@@ -54,9 +51,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape2"
             android:shadowColor="#A8A8A8"
-            android:shadowDx="0dp"
-            android:shadowDy="0dp"
-            android:shadowRadius="5dp"
             />
 
 
