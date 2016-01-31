@@ -8,15 +8,13 @@ KEY = "&apikey=GQW6JFUW1LNE8B54T96WNFT34S5HCYP2"
 
 legislator_scores = {}
 
-bill_count = 0
+bill_counts = {}
 
 def score_bills(url, keyword, params):
     r = requests.get(url + keyword + params + KEY)
     j = json.loads(r.text)
-    global bill_count
-    bill_count = bill_count
+    global bill_counts
     for i in range(0, len(j)):
-        bill_count += 1
         bill_id = str(j[i]["id"])
         bill_score = 0.0
         sponsors = None
@@ -51,6 +49,13 @@ def score_bills(url, keyword, params):
                         legislator_scores[leg_id][keyword] = 0.0
                     legislator_scores[leg_id][keyword] += bill_score
                     legislator_scores[leg_id]["overall_score"] += bill_score
+                    if leg_id not in bill_counts:
+                        bill_counts[leg_id] = {}
+                        bill_counts[leg_id]["overall_score"] = 0.0
+                    if keyword not in bill_counts[leg_id]:
+                        bill_counts[leg_id][keyword] = 0.0
+                    bill_counts[leg_id]["overall_score"] += 1.0
+                    bill_counts[leg_id][keyword] += 1.0
             if "no_votes" in bill_votes[0]:
                 no_votes = bill_votes[0]["no_votes"]
                 for ii in range(0, len(no_votes)):
@@ -65,9 +70,23 @@ def score_bills(url, keyword, params):
                     legislator_scores[leg_id][keyword] -= bill_score
                     legislator_scores[leg_id]["overall_score"] -= bill_score
 
-for j in range(0, ord('N')+1):
+                    if leg_id not in bill_counts:
+                        bill_counts[leg_id] = {}
+                        bill_counts[leg_id]["overall_score"] = 0.0
+                    if keyword not in bill_counts[leg_id]:
+                        bill_counts[leg_id][keyword] = 0.0
+                    bill_counts[leg_id]["overall_score"] += 1.0
+                    bill_counts[leg_id][keyword] += 1.0
+
+for j in range(0, 1):
     for i in range(0, len(keywords)):
         score_bills(url, keywords[i], params)
+
+for leg_id in legislator_scores:
+    for keyword in legislator_scores[leg_id]:
+        if bill_counts[leg_id][keyword] == 0:
+            print keyword
+        legislator_scores[leg_id][keyword] = 20.0 / bill_counts[leg_id][keyword]
 
 results = {"results":[legislator_scores]}
 print json.dumps(results)
