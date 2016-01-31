@@ -3,7 +3,7 @@ import requests
 
 url = "https://hackathon.fiscalnote.com/bills?q="
 keywords = ["criminal", "social", "environmental", "economic", "domestic+policy", "healthcare", "foreign+policy", "education", "immigration", "science"]
-params = "&created=1/1/2014,12/31/2014&legislature=MD&count=100"
+params = "&created=1/1/2012,12/31/2014&legislature=MD&count=100"
 KEY = "&apikey=GQW6JFUW1LNE8B54T96WNFT34S5HCYP2"
 
 legislator_scores = {}
