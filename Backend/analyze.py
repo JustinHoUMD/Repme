@@ -78,7 +78,7 @@ def score_bills(url, keyword, params):
                     bill_counts[leg_id]["overall_score"] += 1.0
                     bill_counts[leg_id][keyword] += 1.0
 
-for j in range(0, 1):
+for j in range(0, 50):
     for i in range(0, len(keywords)):
         score_bills(url, keywords[i], params)
 
